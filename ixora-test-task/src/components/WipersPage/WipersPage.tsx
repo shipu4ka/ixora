@@ -13,6 +13,9 @@ export const WipersPage: FC = () => {
   const [titlePage, setTitlePage] = useState("Подбор стеклоочистителей");
   const [titleAuto, setTitleAuto] = useState("");
   const [titleModification, setTitleModification] = useState("");
+  const [classOptionsOrientation, setClassOptionsOrientation] = useState(
+    "options-list_vertical"
+  );
 
   useEffect(() => {
     api.getBrandsAuto().then((res) => {
@@ -27,6 +30,7 @@ export const WipersPage: FC = () => {
           setContentAuto(res.data);
           setPageType(EPageType.MODELS);
           setTitleAuto(item.name);
+          setClassOptionsOrientation("options-list_horizontal");
         });
         break;
       case EPageType.MODELS:
@@ -57,7 +61,7 @@ export const WipersPage: FC = () => {
           return (
             <div
               key={uid()}
-              className="section-wipers__options-list options-list"
+              className="section-wipers__options-list options-list options-list_vertical"
             >
               <p className="options-list__item">
                 {wiperTitles.length1}
@@ -81,7 +85,9 @@ export const WipersPage: FC = () => {
           );
         })
       ) : (
-        <div className="section-wipers__options-list options-list">
+        <div
+          className={`section-wipers__options-list options-list ${classOptionsOrientation}`}
+        >
           {contentAuto?.map((item) => {
             return (
               <p
