@@ -51,7 +51,7 @@ export const WipersPage: FC = () => {
   };
 
   return (
-    <section className="section-wipers">
+    <section className="section-wipers" data-testid="section-wipers">
       <h3 className="section-wipers__title title">
         {titlePage} <span className="title_red-text">{titleAuto}</span>
         <span className="title_thin-text">{titleModification}</span>
@@ -60,6 +60,7 @@ export const WipersPage: FC = () => {
         contentWipers?.map((wiper: IWipersParams) => {
           return (
             <div
+              data-testid="wipers-item"
               key={uid()}
               className="section-wipers__options-list options-list options-list_vertical"
             >
@@ -91,6 +92,7 @@ export const WipersPage: FC = () => {
           {contentAuto?.map((item) => {
             return (
               <p
+                data-testid="content-auto-item"
                 key={item.id}
                 className="options-list__item"
                 onClick={() => onBrandClick(item)}
